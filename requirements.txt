@@ -1,0 +1,20 @@
+asgiref==3.5.0
+astroid==2.9.3
+autopep8==1.6.0
+colorama==0.4.4
+Django==4.0.3
+django-crispy-forms==1.14.0
+-e git+https://github.com/jazzband/django-debug-toolbar.git@54e63f0494414ae0d93abc6e202d5f644c75952a#egg=django_debug_toolbar
+isort==5.10.1
+lazy-object-proxy==1.7.1
+mccabe==0.6.1
+Pillow==9.0.1
+platformdirs==2.5.1
+pycodestyle==2.8.0
+pylint==2.12.2
+Pyro4==4.82
+serpent==1.40
+sqlparse==0.4.2
+toml==0.10.2
+tzdata==2022.1
+wrapt==1.13.3
