@@ -152,15 +152,6 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
 # Salvar a cada requisição
 SESSION_SAVE_EVERY_REQUEST = False
 
-# Serializer - Padrão JSON
-# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-
-# Para sessions em arquivos ao invés da base de dados
-# SESSION_ENGINE = "django.contrib.sessions.backends.file"
-# SESSION_FILE_PATH = '/home/luizotavio/Desktop/temp'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 # TODO: Remover IP debug toolbar
 INTERNAL_IPS = ['127.0.0.1', ]
