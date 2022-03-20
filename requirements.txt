@@ -12,8 +12,8 @@ Pillow==9.0.1
 platformdirs==2.5.1
 pycodestyle==2.8.0
 pylint==2.12.2
-Pyro4==4.82
-serpent==1.40
+pylint-django==2.5.2
+pylint-plugin-utils==0.7
 sqlparse==0.4.2
 toml==0.10.2
 tzdata==2022.1
