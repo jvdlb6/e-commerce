@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% include 'parcials\_header.html'%}
+  <title>{% block titulo %}{% endblock %}Ethical E</title>
+</head>
+
+<body>
+  {% include 'parcials/_nav.html'%}
+  <main class="container mt-4 mb-4">
+    {% block conteudo%}{% endblock %}
+  </main>
+
+  {% include 'parcials/_footer.html' %}
+
+</body>
+
+</html>
