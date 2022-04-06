@@ -25,7 +25,7 @@ urlpatterns = [
     path('pedido/', include('pedido.urls')),
     path('admin/', admin.site.urls),
     path('debug/', include(debug_toolbar.urls)),
-]  # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # TODO: Remover debug toolbar
 

@@ -1,3 +1,4 @@
+from ctypes import util
 from pickletools import optimize
 from random import choices
 from django.db import models
@@ -5,6 +6,7 @@ from PIL import Image
 import os
 from django.conf import settings
 from django.utils.text import slugify
+from utils import utils
 
 
 class Produto(models.Model):
@@ -13,7 +15,7 @@ class Produto(models.Model):
         max_length=255, verbose_name='Descrição Curta')
     descricao_longa = models.TextField(verbose_name='Descrição Longa')
     imagem = models.ImageField(
-        upload_to='produto_Imagens/%Y/%m/', blank=True, null=True)
+        upload_to='produto_imagens/%Y/%m/', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     preco_marketing = models.FloatField(verbose_name='Preço Marketing')
     preco_marketing_promocional = models.FloatField(default=0,
@@ -28,12 +30,12 @@ class Produto(models.Model):
     )
 
     def get_preco_formatado(self):
-        return f'R$ {self.preco_marketing:.2f}'.replace('.', ',')
+        return utils.formata_preco(self.preco_marketing)
 
     get_preco_formatado.short_description = 'Preço'
 
     def get_preco_promo_formatado(self):
-        return f'R$ {self.preco_marketing_promocional:.2f}'.replace('.', ',')
+        return utils.formata_preco(self.preco_marketing_promocional)
 
     get_preco_promo_formatado.short_description = 'Preço Promo'
 
