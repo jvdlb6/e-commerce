@@ -19,7 +19,7 @@ class BasePerfil(View):
         self.carrinho = copy.deepcopy(self.request.session.get('carrinho', {}))
 
         self.perfil = None
-
+# user logado
         if self.request.user.is_authenticated:
             self.perfil = models.Perfil.objects.filter(
                 usuario=self.request.user
@@ -36,6 +36,7 @@ class BasePerfil(View):
                     data=self.request.POST or None
                 )
             }
+# user deslogado
         else:
             self.contexto = {
                 'userform': forms.UserForm(
@@ -50,6 +51,9 @@ class BasePerfil(View):
 
         self.userform = self.contexto['userform']
         self.perfilform = self.contexto['perfilform']
+
+        if self.request.user.is_authenticated:
+            self.template_name = 'perfil/atualizar.hrml'
 
         self.renderizar = render(
             self.request, self.template_name, self.contexto)
