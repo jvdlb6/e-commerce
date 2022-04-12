@@ -45,8 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    # TODO: Remover debug toolbar
-    'debug_toolbar',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -61,8 +59,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # TODO: Remover debug toolbar
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'loja.urls'
@@ -155,9 +151,4 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
 
 # Salvar a cada requisição
 SESSION_SAVE_EVERY_REQUEST = False
-
-
-# TODO: Remover IP debug toolbar
-INTERNAL_IPS = ['127.0.0.1', ]
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
