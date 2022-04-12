@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -6,7 +7,6 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.db.models import Q
 
-from pprint import pprint
 from . import models
 from perfil.models import Perfil
 
@@ -16,6 +16,7 @@ class ListaProdutos(ListView):
     template_name = 'produto/lista.html'
     context_object_name = 'produtos'
     paginate_by = 10
+    ordering = ['-id']
 
 
 class DetalheProduto(DetailView):
@@ -105,7 +106,6 @@ class AdicionarAoCarrinho(View):
             }
 
         self.request.session.save()
-        pprint(carrinho)
         messages.success(
             self.request,
             f'Produto { produto_nome } { variacao_nome } adicionado ao seu carrinho '
@@ -155,4 +155,28 @@ class Carrinho(View):
 
 class ResumoDaCompra(View):
     def get(self, *args, **kwargs):
-        return HttpResponse('resumodacompra')
+        if not self.request.user.is_authenticated:
+            return redirect('perfil:criar')
+
+        perfil = Perfil.objects.filter(usuario=self.request.user)
+
+        if not perfil:
+            messages.error(
+                self.request,
+                'Usuário sem perfil'
+            )
+            return redirect('perfil:criar')
+
+        if not self.request.session.get('carrinho'):
+            messages.error(
+                self.request,
+                'Carrinho vazio'
+            )
+            return redirect('produto:lista')
+
+        contexto = {
+            'usuario': self.request.user,
+            'carrinho': self.request.session['carrinho'],
+        }
+
+        return render(self.request, 'produto/resumodacompra.html', contexto)
